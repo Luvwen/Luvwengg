@@ -6,6 +6,7 @@ export const Sidebar = () => {
     return (
         <Stack
             alignItems="center"
+            as="aside"
             bg="secondary"
             height="100vh"
             left="0"

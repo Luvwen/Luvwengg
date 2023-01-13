@@ -33,6 +33,7 @@ export const Home = () => {
     return (
         <Stack
             alignItems="center"
+            as="main"
             background="primary"
             display="flex"
             height="calc(95vh)"
@@ -41,6 +42,7 @@ export const Home = () => {
         >
             <Stack
                 alignItems="center"
+                as="section"
                 color="white"
                 justifyContent="center"
                 spacing="35"
