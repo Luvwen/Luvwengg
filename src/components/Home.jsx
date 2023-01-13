@@ -35,7 +35,7 @@ export const Home = () => {
             alignItems="center"
             background="primary"
             display="flex"
-            height="calc(100vh)"
+            height="calc(95vh)"
             justifyContent="center"
             width="100%"
         >
@@ -72,6 +72,7 @@ export const Home = () => {
                 </HStack>
                 <Input
                     borderRadius="50"
+                    p="25px"
                     placeholder="Search Yourself or a champion"
                     size="lg"
                     variant="filled"
