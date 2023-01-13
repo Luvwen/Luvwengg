@@ -1,5 +1,7 @@
+import { Home } from './components/Home';
+
 function App() {
-    return <div>Hola mundo</div>;
+    return <Home />;
 }
 
 export default App;
