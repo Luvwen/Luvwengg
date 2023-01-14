@@ -7,11 +7,12 @@ import {
     Stack,
     Text,
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { useState } from 'react';
 
 import logoImage from '../assets/images/ugg.svg';
 
 export const Home = () => {
+    const [background, setBackground] = useState({});
     const SERVERS = [
         'NA',
         'EUW',
@@ -30,6 +31,14 @@ export const Home = () => {
         'TR',
         'JP',
     ];
+
+    const changeBackgroundColor = (index) => () => {
+        setBackground((state) => ({
+            ...state,
+            [index]: !state[index],
+        }));
+    };
+
     return (
         <Stack
             alignItems="center"
@@ -45,26 +54,30 @@ export const Home = () => {
                 as="section"
                 color="white"
                 justifyContent="center"
-                spacing="35"
+                spacing="45"
                 width="100%"
             >
                 <HStack
                     justifyContent="center"
-                    mb="15"
+                    mb="35"
                     spacing="10"
                     width="40%"
                 >
-                    <Image src={logoImage} />
+                    <Image src={logoImage} width="350px" />
                     <Stack
                         flexDirection="column"
                         justifyContent="space-between"
                     >
-                        <Heading as="h1" fontSize="4xl">
+                        <Heading as="h1" fontSize="5xl">
                             THE APP IS HERE.
                         </Heading>
                         <Button
+                            _hover={{ bg: 'danger' }}
                             bg="highlight"
+                            borderRadius="8px"
                             color="white"
+                            fontSize="xl"
+                            p="25px 20px"
                             size="md"
                             width="50%"
                         >
@@ -74,20 +87,29 @@ export const Home = () => {
                 </HStack>
                 <Input
                     borderRadius="50"
-                    p="25px"
-                    placeholder="Search Yourself or a champion"
+                    fontSize="2xl"
+                    p="35px"
+                    placeholder="Search Yourself or a Champion"
                     size="lg"
                     variant="filled"
                     width="40%"
                 />
-                <HStack justifyContent="center" spacing="15" width="55%">
+                <HStack justifyContent="center" spacing="25" width="55%">
                     {SERVERS.map((server, index) => {
                         return (
                             <Text
-                                bg="terciary"
+                                bg={
+                                    background[index]
+                                        ? 'highlight'
+                                        : 'secondary'
+                                }
+                                borderRadius="4px"
                                 color="white"
+                                cursor="pointer"
+                                fontWeight="bold"
                                 key={index}
-                                p="4px 6px"
+                                onClick={changeBackgroundColor(index)}
+                                p="6px 14px"
                             >
                                 {server}
                             </Text>

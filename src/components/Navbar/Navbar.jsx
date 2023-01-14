@@ -22,7 +22,7 @@ export const Navbar = () => {
                 justifyContent="space-between"
                 zIndex="15"
             >
-                <Heading ml="100px">Hola, soy un texto</Heading>
+                <Heading ml="100px">LuvwenGG</Heading>
                 <Stack
                     alignItems="center"
                     as={UnorderedList}
@@ -50,6 +50,7 @@ export const Navbar = () => {
                         width="20px"
                     />
                     <Button
+                        _hover={{ bg: 'danger' }}
                         bg="highlight"
                         color="white"
                         p="12px 12px"
