@@ -1,8 +1,24 @@
-import { BellIcon, EmailIcon, SettingsIcon } from '@chakra-ui/icons';
-import { Box, Button, Heading, Stack, UnorderedList } from '@chakra-ui/react';
+import {
+    BellIcon,
+    EmailIcon,
+    SearchIcon,
+    SettingsIcon,
+} from '@chakra-ui/icons';
+import {
+    Box,
+    Button,
+    Heading,
+    Input,
+    Stack,
+    Text,
+    UnorderedList,
+} from '@chakra-ui/react';
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 
 export const Navbar = () => {
+    const currentLocation = useLocation().pathname;
+    console.log(currentLocation);
     return (
         <Box
             alignItems="center"
@@ -25,6 +41,37 @@ export const Navbar = () => {
                 zIndex="15"
             >
                 <Heading ml="100px">LuvwenGG</Heading>
+                {currentLocation !== '/' ? (
+                    <Stack
+                        alignItems="center"
+                        direction="row"
+                        position="relative"
+                        spacing="5"
+                    >
+                        <Input
+                            _hover={{ bg: 'secondary' }}
+                            bg="secondary"
+                            color="#BEC9DF"
+                            placeholder="Search Summoner or Champion"
+                            variant="filled"
+                            width="20vw"
+                        />
+                        <Stack
+                            alignItems="center"
+                            direction="row"
+                            position="absolute"
+                            right="5"
+                            spacing="5"
+                        >
+                            <Text bg="highlight" p="0 6px">
+                                LAS
+                            </Text>
+                            <SearchIcon />
+                        </Stack>
+                    </Stack>
+                ) : (
+                    ''
+                )}
                 <Stack
                     alignItems="center"
                     as={UnorderedList}

@@ -5,6 +5,7 @@ import uggIcon from '../../assets/images/uggIcon.svg';
 import uggBig from '../../assets/images/ugg.svg';
 
 import { IconListItem } from './IconListItem';
+import { Link } from 'react-router-dom';
 
 export const Sidebar = () => {
     const [isHover, setIsHover] = useState(false);
@@ -30,16 +31,18 @@ export const Sidebar = () => {
             width="3vw"
         >
             <Stack alignItems="flex-start">
-                <Image
-                    boxSize="30px"
-                    cursor="pointer"
-                    mt="20px"
-                    pl="15px"
-                    src={isHover ? uggBig : uggIcon}
-                    transitionDuration="0.3s"
-                    transitionTimingFunction="ease-in"
-                    width={isHover && 'min-content'}
-                />
+                <Link to="/">
+                    <Image
+                        boxSize="30px"
+                        cursor="pointer"
+                        mt="20px"
+                        pl="15px"
+                        src={isHover ? uggBig : uggIcon}
+                        transitionDuration="0.3s"
+                        transitionTimingFunction="ease-in"
+                        width={isHover && 'min-content'}
+                    />
+                </Link>
             </Stack>
             <IconListItem />
         </Stack>

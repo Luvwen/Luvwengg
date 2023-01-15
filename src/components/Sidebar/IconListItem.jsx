@@ -7,6 +7,7 @@ import skullIcon from '../../assets/images/skullIcon.svg';
 import searchIcon from '../../assets/images/searchIcon.svg';
 import leaderboardIcon from '../../assets/images/leaderboardIcon.svg';
 import swordIcon from '../../assets/images/swordIcon.svg';
+import { Link } from 'react-router-dom';
 
 export const IconListItem = () => {
     return (
@@ -48,21 +49,23 @@ export const IconListItem = () => {
                     Tier Lists
                 </Text>
             </Flex>
-            <Flex
-                _hover={{ background: 'primary' }}
-                alignItems="center"
-                as="li"
-                borderRadius="6px"
-                cursor="pointer"
-                direction="row"
-                p="10px"
-                width="90%"
-            >
-                <Image boxSize="30px" src={skullIcon} />
-                <Text fontSize="xl" fontWeight="bold" ml="30px">
-                    Champions
-                </Text>
-            </Flex>
+            <Link to="/champions">
+                <Flex
+                    _hover={{ background: 'primary' }}
+                    alignItems="center"
+                    as="li"
+                    borderRadius="6px"
+                    cursor="pointer"
+                    direction="row"
+                    p="10px"
+                    width="90%"
+                >
+                    <Image boxSize="30px" src={skullIcon} />
+                    <Text fontSize="xl" fontWeight="bold" ml="30px">
+                        Champions
+                    </Text>
+                </Flex>
+            </Link>
 
             <Flex
                 _hover={{ background: 'primary' }}
