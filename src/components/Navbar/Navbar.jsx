@@ -9,6 +9,8 @@ export const Navbar = () => {
             as="header"
             bg="#090924"
             height="5vh"
+            position="fixed"
+            top="0"
             width="100vw"
         >
             <Stack

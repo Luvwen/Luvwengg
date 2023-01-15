@@ -38,14 +38,13 @@ export const Home = () => {
             [index]: !state[index],
         }));
     };
-
     return (
         <Stack
             alignItems="center"
             as="main"
             background="primary"
             display="flex"
-            height="calc(95vh)"
+            height="calc(100vh)"
             justifyContent="center"
             width="100%"
         >

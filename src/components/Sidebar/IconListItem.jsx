@@ -63,6 +63,7 @@ export const IconListItem = () => {
                     Champions
                 </Text>
             </Flex>
+
             <Flex
                 _hover={{ background: 'primary' }}
                 alignItems="center"

@@ -36,6 +36,8 @@ export const Sidebar = () => {
                     mt="20px"
                     pl="15px"
                     src={isHover ? uggBig : uggIcon}
+                    transitionDuration="0.3s"
+                    transitionTimingFunction="ease-in"
                     width={isHover && 'min-content'}
                 />
             </Stack>
