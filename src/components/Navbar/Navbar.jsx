@@ -18,7 +18,6 @@ import { useLocation } from 'react-router-dom';
 
 export const Navbar = () => {
     const currentLocation = useLocation().pathname;
-    console.log(currentLocation);
     return (
         <Box
             alignItems="center"
@@ -28,6 +27,7 @@ export const Navbar = () => {
             position="fixed"
             top="0"
             width="100vw"
+            zIndex="150"
         >
             <Stack
                 alignItems="center"
@@ -41,6 +41,7 @@ export const Navbar = () => {
                 zIndex="15"
             >
                 <Heading ml="100px">LuvwenGG</Heading>
+                {/* eslint-disable-next-line */}
                 {currentLocation !== '/' ? (
                     <Stack
                         alignItems="center"

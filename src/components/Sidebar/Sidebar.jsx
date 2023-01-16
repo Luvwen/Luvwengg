@@ -29,6 +29,7 @@ export const Sidebar = () => {
             position="fixed"
             top="0"
             width="3vw"
+            zIndex="200"
         >
             <Stack alignItems="flex-start">
                 <Link to="/">
