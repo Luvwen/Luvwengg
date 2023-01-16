@@ -19,6 +19,5 @@ module.exports = {
         'react/jsx-sort-props': ['error'],
         'react/prop-types': 'off',
         'comma-dangle': 0,
-        'multiline-ternary': 'never',
     },
 };

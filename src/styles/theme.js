@@ -8,4 +8,13 @@ export const myNewTheme = extendTheme({
         danger: '#EE1739',
         highlight: '#F62F63',
     },
+    components: {
+        Progress: {
+            baseStyle: {
+                filledTrack: {
+                    bg: '#F62F63',
+                },
+            },
+        },
+    },
 });
