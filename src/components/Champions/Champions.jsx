@@ -10,6 +10,7 @@ import {
     VStack,
 } from '@chakra-ui/react';
 import { LoadingScreen } from '../LoadingScreen/LoadingScreen';
+import { Link } from 'react-router-dom';
 
 export const Champions = () => {
     const [championsData, setChampionsData] = useState([]);
@@ -76,41 +77,42 @@ export const Champions = () => {
                 >
                     {championsData.map((champion) => {
                         return (
-                            <VStack
-                                _hover={{
-                                    fontWeight: 'bold',
-                                }}
-                                alignItems="left"
-                                color="white"
-                                cursor="pointer"
-                                key={champion.id}
-                                position="relative"
-                                pt="10px"
-                            >
-                                <Image
-                                    alt={champion.id}
-                                    border="1px solid #2c2c40"
-                                    height="135px"
-                                    outline="none"
-                                    src={`https://ddragon.canisback.com/img/champion/splash/${champion.id}_0.jpg`}
-                                    width="135px"
-                                />
-                                <Box
+                            <Link key={champion.id} to={`./${champion.id}`}>
+                                <VStack
                                     _hover={{
-                                        bg: 'white',
-                                        transitionDuration: '0.2s',
-                                        transitionTimingFunction: 'ease',
+                                        fontWeight: 'bold',
                                     }}
-                                    bg=""
-                                    height="135px"
-                                    inset="0"
-                                    opacity="0.1"
-                                    position="absolute"
-                                    width="100%"
-                                    zIndex="15"
-                                />
-                                <Text>{champion.id}</Text>
-                            </VStack>
+                                    alignItems="left"
+                                    color="white"
+                                    cursor="pointer"
+                                    position="relative"
+                                    pt="10px"
+                                >
+                                    <Image
+                                        alt={champion.id}
+                                        border="1px solid #2c2c40"
+                                        height="135px"
+                                        outline="none"
+                                        src={`http://ddragon.leagueoflegends.com/cdn/13.1.1/img/champion/${champion.id}.png`}
+                                        width="135px"
+                                    />
+                                    <Box
+                                        _hover={{
+                                            bg: 'white',
+                                            transitionDuration: '0.2s',
+                                            transitionTimingFunction: 'ease',
+                                        }}
+                                        bg=""
+                                        height="135px"
+                                        inset="0"
+                                        opacity="0.1"
+                                        position="absolute"
+                                        width="100%"
+                                        zIndex="15"
+                                    />
+                                    <Text>{champion.id}</Text>
+                                </VStack>
+                            </Link>
                         );
                     })}
                 </Grid>
