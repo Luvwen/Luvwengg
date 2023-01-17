@@ -20,7 +20,7 @@ export const Champion = () => {
                 setLoading(false);
             });
     }, []);
-    console.log(champInfo);
+
     if (loading) return <LoadingScreen />;
 
     return (

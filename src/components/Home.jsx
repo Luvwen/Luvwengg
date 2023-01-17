@@ -1,5 +1,6 @@
 import {
     Button,
+    FormControl,
     Heading,
     HStack,
     Image,
@@ -8,11 +9,18 @@ import {
     Text,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import logoImage from '../assets/images/ugg.svg';
 
 export const Home = () => {
     const [background, setBackground] = useState({});
+    const [inputValue, setInputValue] = useState({
+        search: '',
+    });
+
+    const navigate = useNavigate();
+    const APIKEY = import.meta.env.VITE_API_RIOT_KEY;
     const SERVERS = [
         'NA',
         'EUW',
@@ -32,6 +40,19 @@ export const Home = () => {
         'JP',
     ];
 
+    const handleInputChange = (evt) => {
+        const { name, value } = evt.target;
+        setInputValue({ ...inputValue, [name]: value });
+    };
+
+    const handleSubmit = async (evt) => {
+        evt.preventDefault();
+        const response = await fetch(
+            `https://la2.api.riotgames.com/lol/summoner/v4/summoners/by-name/${inputValue.search}?api_key=${APIKEY}`
+        );
+        const summonerInfo = await response.json();
+        navigate(`/summoner/${summonerInfo.name}`);
+    };
     const changeBackgroundColor = (index) => () => {
         setBackground((state) => ({
             ...state,
@@ -84,15 +105,21 @@ export const Home = () => {
                         </Button>
                     </Stack>
                 </HStack>
-                <Input
-                    borderRadius="50"
-                    fontSize="2xl"
-                    p="35px"
-                    placeholder="Search Yourself or a Champion"
-                    size="lg"
-                    variant="filled"
-                    width="40%"
-                />
+                <FormControl width="40%">
+                    <form onSubmit={handleSubmit}>
+                        <Input
+                            borderRadius="50"
+                            fontSize="2xl"
+                            name="search"
+                            onChange={handleInputChange}
+                            p="35px"
+                            placeholder="Search Yourself or a Champion"
+                            size="lg"
+                            value={inputValue.search}
+                            variant="filled"
+                        />
+                    </form>
+                </FormControl>
                 <HStack justifyContent="center" spacing="25" width="55%">
                     {SERVERS.map((server, index) => {
                         return (

@@ -5,6 +5,7 @@ import { Champions } from './components/Champions/Champions';
 import { Home } from './components/Home';
 import { Navbar } from './components/Navbar/Navbar';
 import { Sidebar } from './components/Sidebar/Sidebar';
+import { SummonerInfo } from './components/SummonerInfo/SummonerInfo';
 
 function App() {
     return (
@@ -14,6 +15,10 @@ function App() {
                 <Route element={<Champions />} path="/champions" />
                 <Route element={<Home />} path="/*" />
                 <Route element={<Champion />} path="/champions/:id" />
+                <Route
+                    element={<SummonerInfo />}
+                    path="/summoner/:summonerName"
+                />
             </Routes>
             <Sidebar />
         </Box>
