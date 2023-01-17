@@ -1,64 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Button, Heading, Image, Stack, Text } from '@chakra-ui/react';
 import { LoadingScreen } from '../LoadingScreen/LoadingScreen';
+import { getAllData } from '../../helpers/getAllData';
 
 export const SummonerInfo = () => {
     const { summonerName } = useParams();
-    const [isLoading, setIsLoading] = useState(true);
-    const [summonerData, setSummonerData] = useState({});
-    const [dataFromMatchHistory, setDataFromMatchHistory] = useState([]);
-
-    const APIKEY = import.meta.env.VITE_API_RIOT_KEY;
-
-    const getSummonerData = async () => {
-        const response = await fetch(
-            `https://la2.api.riotgames.com/lol/summoner/v4/summoners/by-name/${summonerName}?api_key=${APIKEY}`
-        );
-        const summonerInfo = await response.json();
-        const { puuid } = summonerInfo;
-        setSummonerData(summonerInfo);
-        setIsLoading(false);
-        getMatchHistory(puuid);
-    };
-
-    const getMatchHistory = async (puuid) => {
-        const response = await fetch(
-            `https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=20&api_key=${APIKEY}`
-        );
-        const matchHistory = await response.json();
-        getAllMatchHistoryStats(matchHistory);
-    };
-
-    const getAllMatchHistoryStats = (matchHistory) => {
-        matchHistory.map((match) => {
-            fetch(
-                `https://americas.api.riotgames.com/lol/match/v5/matches/${match}?api_key=${APIKEY}`
-            )
-                .then((resp) => resp.json())
-                .then((data) => {
-                    setDataFromMatchHistory((prevState) => [
-                        ...prevState,
-                        data,
-                    ]);
-                });
-            return true;
-        });
-    };
-
-    useEffect(() => {
-        getSummonerData();
-    }, []);
+    const [isLoading, dataFromMatchHistory, summonerData] =
+        getAllData(summonerName);
 
     if (isLoading) return <LoadingScreen />;
+
     return (
-        <Stack height="100vh" m="5vh auto 0" width="55vw">
-            <Stack
-                as="article"
-                color="white"
-                direction="row"
-                p="150px 0 0 150px"
-            >
+        <Stack
+            height="100vh"
+            m="5vh auto 0"
+            p="150px 0 0 150px"
+            spacing="24"
+            width="55vw"
+        >
+            <Stack as="article" color="white" direction="row">
                 <Stack direction="row" spacing="10">
                     <Image
                         border="3px solid gray"
@@ -82,14 +43,26 @@ export const SummonerInfo = () => {
                             Refresh
                         </Button>
                     </Stack>
-                    <Stack>
-                        {dataFromMatchHistory.map((game, index) => {
-                            console.log(game);
-                            return (
-                                <Text key={index}>{game.metadata.matchId}</Text>
-                            );
-                        })}
-                    </Stack>
+                </Stack>
+            </Stack>
+            <Stack direction="row" spacing="4">
+                <Stack spacing="4">
+                    <Stack bg="secondary" height="5vh" width="15vw"></Stack>
+                    <Stack bg="secondary" height="5vh" width="15vw"></Stack>
+                    <Stack bg="secondary" height="25vh" width="15vw"></Stack>
+                </Stack>
+                <Stack bg="secondary" width="35vw">
+                    {dataFromMatchHistory.map((game) => {
+                        return (
+                            <Stack
+                                // bg={ ? '#1E2B5E' : '#301F3A'}
+                                color="white"
+                                key={game.metadata.matchId}
+                            >
+                                <Text>{game.metadata.matchId}</Text>
+                            </Stack>
+                        );
+                    })}
                 </Stack>
             </Stack>
         </Stack>
