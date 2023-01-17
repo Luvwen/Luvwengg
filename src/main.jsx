@@ -9,13 +9,11 @@ import App from './App';
 import { myNewTheme } from './styles/theme';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <React.StrictMode>
-        <BrowserRouter>
-            <Provider store={store}>
-                <ChakraBaseProvider theme={myNewTheme}>
-                    <App />
-                </ChakraBaseProvider>
-            </Provider>
-        </BrowserRouter>
-    </React.StrictMode>
+    <BrowserRouter>
+        <Provider store={store}>
+            <ChakraBaseProvider theme={myNewTheme}>
+                <App />
+            </ChakraBaseProvider>
+        </Provider>
+    </BrowserRouter>
 );

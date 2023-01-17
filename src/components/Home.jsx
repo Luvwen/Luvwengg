@@ -59,6 +59,7 @@ export const Home = () => {
             [index]: !state[index],
         }));
     };
+
     return (
         <Stack
             alignItems="center"
